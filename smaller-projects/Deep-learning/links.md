@@ -1,0 +1,1 @@
+https://github.com/jfodera/proj-ai-ml/blob/main/homeworks/hw3/hw3.ipynb
