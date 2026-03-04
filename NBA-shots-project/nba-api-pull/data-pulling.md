@@ -30,7 +30,8 @@
 - retrieving years experience is possible using the NBA API, but requires some more in api manipulation, so I wanted to check with you guys before I put the time into doing that
 - Let team know that wingspan information is only available for players that attended the combine (not all players) 
   - so is it something we should include or no? 
-
+- How do we want to handle undrafted players? 
+- move our output over to Kaggle 
 ## Things learned
 - The [nba API](https://github.com/swar/nba_api?tab=readme-ov-file) we are using is a wrapper on the official API on NBA.com
   - In clicking around NBA.com, it seems the URL is simply a get request to their API, returning the HTML output 
