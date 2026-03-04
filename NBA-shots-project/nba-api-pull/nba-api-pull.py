@@ -26,18 +26,18 @@ COLS_TO_DROP = ['TEAM_ID', 'TEAM_ABBREVIATION', 'PLAYER_HEIGHT', 'COLLEGE', 'COU
 TIME_BETWEEN_CALLS = 30
 
 seasonIndex = 0
-for season1 in range(2023, 2025):
+for season1 in range(2004, 2025):
   # Asking "return every player with the season=season1"
   allFromSeason = LeagueDashPlayerBioStats(
     season=SEASONS_TO_PULL[seasonIndex]
   )
-  seasonIndex += 1
 
   currentSeasonFrame = allFromSeason.get_data_frames()[0]   # 0 because this specific endpoint only returns one results set 
   currentSeasonFrame = currentSeasonFrame.drop(columns = COLS_TO_DROP)
   currentSeasonFrame['SEASON_1'] = season1
   currentSeasonFrame.to_csv('NBA_' + str(season1) + '_Players.csv', index=False)
-  print('NBA_' + str(season1) + '_Players.csv has been successfully retrieved and created')
+  print('NBA_' + str(season1) + '_Players.csv has been successfully retrieved and created. \nIt pulled from the ' + SEASONS_TO_PULL[seasonIndex] + ' Season')
+  seasonIndex += 1
   time.sleep(TIME_BETWEEN_CALLS)
 
 print('Data retrieval complete!!')  
