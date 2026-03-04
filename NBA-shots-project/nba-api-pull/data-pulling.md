@@ -15,7 +15,8 @@
     - for each year there is a relation with its own set of NBA players that played that year
     - each player from each is its own seperate row (even if said player has played multiple years)
     - This is the structure we are trying to replicate with our output. 
-  - **Goal Output from NBA Player API**: Player Name, NBA Player ID, Year Played, age, Height, Weight, draftYear/yearsExperience
+  - **Goal Output from NBA Player API**: Player Name, NBA Player ID, Year Played, age, Height, Weight, draftYear
+  
 
 - After taking the join of those datasets, remove player identifying info (teams, id, name)
   - Basically go through and drop columns we want 
@@ -26,7 +27,7 @@
 - Do we want to make the player biometric data a kaggle? 
 - Ask team if we want to include draft year in biometric data? 
   - draftYear, yearsExperience or both? 
-    - for now, retrieve all 
+- retrieving years experience is possible using the NBA API, but requires some more in api manipulation, so I wanted to check with you guys before I put the time into doing that
 - Let team know that wingspan information is only available for players that attended the combine (not all players) 
   - so is it something we should include or no? 
 
