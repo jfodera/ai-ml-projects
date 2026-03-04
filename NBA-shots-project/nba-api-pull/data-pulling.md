@@ -15,7 +15,7 @@
     - for each year there is a relation with its own set of NBA players that played that year
     - each player from each is its own seperate row (even if said player has played multiple years)
     - This is the structure we are trying to replicate with our output. 
-  - **Goal Output from NBA Player API**: Player Name, NBA Player ID, Year Played,  age, Height, Weight, draftYear/yearsExperience
+  - **Goal Output from NBA Player API**: Player Name, NBA Player ID, Year Played, age, Height, Weight, draftYear/yearsExperience
 
 - After taking the join of those datasets, remove player identifying info (teams, id, name)
   - Basically go through and drop columns we want 
@@ -38,7 +38,7 @@
     - The function of the repo, along with being a wrapper is to, provide extensive documentation about the NBA API's to allow for ease of use 
 - LeagueDashPlayerBioStats nba API source code is [here](https://github.com/swar/nba_api/blob/master/src/nba_api/stats/endpoints/leaguedashplayerbiostats.py)
   - This is what we will be 'calling' on the nba_api end 
-## Post Data Retreval Plan
+## Post Data Retrieval Plan
 - When everything is in and set up
   - run VAF for multi-colinearity 
 - keep the year on, for stratification and analyzation of results but DONT train on it, 
