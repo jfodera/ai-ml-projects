@@ -44,3 +44,7 @@
 - keep the year on, for stratification and analyzation of results but DONT train on it, 
 
 - Goal row: each shot from each ear
+
+
+# Current 
+- Now just need to turn this into a loop that adjusts for rate limits to fully be done
