@@ -24,7 +24,6 @@
 
 
 ### Before submit
-- Do we want to make the player biometric data a kaggle? 
 - Ask team if we want to include draft year in biometric data? 
   - draftYear, yearsExperience or both? 
 - retrieving years experience is possible using the NBA API, but requires some more in api manipulation, so I wanted to check with you guys before I put the time into doing that
@@ -33,7 +32,8 @@
 - How do we want to handle undrafted players? 
 - move our output over to Kaggle
 - I dropped POSITION_GROUP is that ok? 
-- create colab sheet for us creating a kaggle 
+- create colab sheet for us creating a kaggle
+- update column documentation  
 ## Things learned
 - The [nba API](https://github.com/swar/nba_api?tab=readme-ov-file) we are using is a wrapper on the official API on NBA.com
   - In clicking around NBA.com, it seems the URL is simply a get request to their API, returning the HTML output 
