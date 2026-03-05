@@ -33,6 +33,7 @@
 - How do we want to handle undrafted players? 
 - move our output over to Kaggle
 - I dropped POSITION_GROUP is that ok? 
+- create colab sheet for us creating a kaggle 
 ## Things learned
 - The [nba API](https://github.com/swar/nba_api?tab=readme-ov-file) we are using is a wrapper on the official API on NBA.com
   - In clicking around NBA.com, it seems the URL is simply a get request to their API, returning the HTML output 
