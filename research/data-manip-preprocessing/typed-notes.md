@@ -1,11 +1,7 @@
 # Lect 2 Notes
 - [Titanic mini-project](https://github.com/Uzmamushtaque/Projects-in-Machine-Learning-and-AI/blob/main/TitanicExample.ipynb) is set up extremley well. 
   - this is how we should set up our in class projects
-
-## Review
-- y-hat - models predicted value of the target value y 
-
-## Going Over Titanic example
+## Going Over [Titanic example](https://github.com/Uzmamushtaque/Projects-in-Machine-Learning-and-AI/blob/main/TitanicExample.ipynb)
 - Go over this before you start the homework 
 - can drop a certain feature if there is not enough actual data
   - meaning there is a lot of NaN
@@ -15,9 +11,31 @@
 - Sometimes we need to transform the data from how we receive it in its raw state
 - need to convert categorical data types to numericals (transforming) 
 - other times we need to do scaling to make sure the bias and variance is in the right spot 
+### Helpful Takeaways from preprocessing 
+- `df.isna().sum()` - how many values per each column are missing 
+- `df.info()` - gives general information on the dataset 
+- `df.describe()` general statistics of the dataset per column
+- `df.Survived.value_counts(normalize=True)` is data imbalances (can normalize here) 
+  - in this context, normalize mean outputting parameters instead of raw counts. 
+- `sns.pairplot(df, hue='Survived')` - plot pairwise relationships visualizing the relationship between all other columns and 'Survived'
+- [this](https://github.com/Uzmamushtaque/Projects-in-Machine-Learning-and-AI/blob/main/TitanicExample.ipynb) has a lot of other great functions useful for preprocessing
+- Barchart: `x = np.arange(len(labels))` //simply lists the x's in arranged order
+  - `fig, ax = plt.subplots(figsize=(8,5))` - an initialization from an object oriented function 
+  - `fig.tight_layout()` - autoadjusting for your chart
 
-## Introduction to tensors
+## Review
+- y-hat - models predicted value of the target value y 
+
+## Data Manipulation 
+- Data visualization aka EDA
+- Feature engineering may sometimes be necessary in order to get the data in the right format
+  - typically use pandas and numpy here
+    - **numpy** - good at handling large, multidimensional arrays and matrices
+- If missing a value, replacing it with an average is normal practice in some cases, you just must ensure you are not introducing bias. 
+- TensorFlow is OS, end to end ML lib
+### Introduction to tensors
 - multidimensional numerical representation of data 
+  - it can be numbers, image, or textg
 - recall: mutability; can change variable, immutable; cannot change variable 
 - Binary scalar operations are available and faster so [use the shortcuts](https://colab.research.google.com/github/Uzmamushtaque/CSCI_4170_6170_Spring2026/blob/main/Lecture_02.ipynb#scrollTo=sNiy0EOh1AzG)
 
@@ -76,9 +94,11 @@
   - Adam - these are others
   - will revisit these for lab 1 
 
-## To do 
+## Misc 
 - review **one hot encoding** 
   - helps to convert categorical data types to numerical data types 
+## To do 
+
 - What does the [rank](https://colab.research.google.com/github/Uzmamushtaque/CSCI_4170_6170_Spring2026/blob/main/Lecture_02.ipynb#scrollTo=7U2InS2KsjwD&line=1&uniqifier=1) here represent? 
 - Figure out what the [Broadcasting Mechanism](https://colab.research.google.com/github/Uzmamushtaque/CSCI_4170_6170_Spring2026/blob/main/Lecture_02.ipynb#scrollTo=eLW3ildFibT9) is 
   - what the mis match is? 
