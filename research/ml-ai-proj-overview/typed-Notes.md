@@ -322,5 +322,7 @@ This is the part that actually turns  into a **Likelihood function**. You have t
 - **Loss Function** - measures error for a single example 
 - **Empirical Error** - Measures average error over the entire training dataset
 - **Solving Problem Analytically** - closed form solution to it. 
-## Reads if have time 
+## Readings if have time 
 - https://cloud.google.com/learn/artificial-intelligence-vs-machine-learning
+
+
