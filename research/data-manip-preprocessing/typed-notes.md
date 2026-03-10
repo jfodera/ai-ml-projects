@@ -1,4 +1,4 @@
-# Lect 2 Notes
+# Data-Manip-preprocessing 
 - [Titanic mini-project](https://github.com/Uzmamushtaque/Projects-in-Machine-Learning-and-AI/blob/main/TitanicExample.ipynb) is set up extremley well. 
   - this is how we should set up our in class projects
 ## Going Over [Titanic example](https://github.com/Uzmamushtaque/Projects-in-Machine-Learning-and-AI/blob/main/TitanicExample.ipynb)
@@ -79,11 +79,9 @@
   - relization occurs that it needs a 3,2 result
   - a stretches to become: [[0,0],[1,1],[2,2]]
   - b stretches to become: [[0,1], [0,1], [0,1]]
+  - result is [[0,1], [1,2], [2,3]]
 
-- Broadcasting rules from the a->b scenario (moving from right to left): 
-  - If the dimensions are equal, keep that number.
-  - If one of the dimensions is 1, take the other (larger) number.
-  - If the dimensions are different and neither is 1, the math fails (Error!).
+
 
 ### Initializing tensors
 
@@ -104,21 +102,132 @@
         [1., 1., 1., 1.]]], dtype=float32)>```
   - Can also use .zeros to initialize with zeros 
     
+- `tf.random.normal(shape=[3, 4])` - creates a tensor with shape (3, 4). Each of its elements is randomly sampled from a standard Gaussian (normal) distribution with a mean of 0 and a standard deviation of 1.
+  - Recall: Gaussian - Bell curve 
+
+### Tensor Operations 
+- all binary scalar operatiors perform operations elementwise between arrays/matricies 
+- x = tf.constant([1.0, 2, 4, 8])
+- y = tf.constant([2.0, 2, 2,2])
+  - x + y = [ 3.,  4.,  6., 10.]
+    - will auto-broadcast if necessary
+  - x ** y = [ 1.,  4., 16., 64.]
+    - `**` - exponentiation 
+- `tf.exp(x)` - computer $e^x$ for every element in the tensor
+
+- Concatenating on different axis: 
+- X = tf.reshape(tf.range(12, dtype=tf.float32), (3, 4))
+- Y = tf.constant([[2.0, 1, 4, 3], [1, 2, 3, 4], [4, 3, 2, 1]])
+- tf.concat([X, Y], axis=0), tf.concat([X, Y], axis=1)
+```
+(<tf.Tensor: shape=(6, 4), dtype=float32, numpy=
+ array([[ 0.,  1.,  2.,  3.],
+        [ 4.,  5.,  6.,  7.],
+        [ 8.,  9., 10., 11.],
+        [ 2.,  1.,  4.,  3.],
+        [ 1.,  2.,  3.,  4.],
+        [ 4.,  3.,  2.,  1.]], dtype=float32)>,
+ <tf.Tensor: shape=(3, 8), dtype=float32, numpy=
+ array([[ 0.,  1.,  2.,  3.,  2.,  1.,  4.,  3.],
+        [ 4.,  5.,  6.,  7.,  1.,  2.,  3.,  4.],
+        [ 8.,  9., 10., 11.,  4.,  3.,  2.,  1.]], dtype=float32)>)
+```
+- Doing a logical statement such as `X==Y` creates a new tensor with binary results from comparing each element. 
+
+### Broadcasting
+- Broadcasting rules from the a->b scenario (moving from right to left): 
+  - If the dimensions are equal, keep that number.
+  - If one of the dimensions is 1, take the other (larger) number.
+  - If the dimensions are different and neither is 1, the math fails (Error!).
+- Common pitfalls
+  - remember, broadcasting happens per-dimension, not per-tensor 
+  -  don't accidentally broadcast when you intend to do a dot product
+    - A*B - broadcast
+    - A @ B - dot product
+- This fails: `(3, 2) + (2, 2) (mismatch on the second-to-last dim)`
 
 
-  
+## Data Reading and Data Pre-processing in Colab 
+
+### Data Loading and first-pass Preprocessing
+- Most model failures start in the data pipeline, this is why you should always do a quick audit
+  - Shape: num of rows/cols
+  - Types: numeric vs categorical vs datetime
+  - Missingness: which columns are incomplete and how incomplete 
+
+- Minimal/Basic Preprocessing Example: 
+  - 1. Separate features/label
+  - Impute missing numeric values (typically using median) 
+    - impute - fill in 
+    - or you could delete them
+  - One-hot encode categorical variables
+  - carry out the train/test split 
+
+## Vectorization 
+- vectors in ML problems typically represent examples from the dataset. 
+  - In math notation, denote vectors as bold-faced lower-cased letters : **x**
+- ith element of vector x is $x_i$
+- `x[3]` in tensorflow terms 
+- **Vectorization** is a technique used to speed up Python code without using loops 
+  - especially useful with operations like dot product, cross-product need to be performed on large vectors or scalars
+- `a=np.random.rand(1000000)` - returns a one dimensional numpy array containing one million pseudo-random floating-point numbers:  
+- using `c=np.dot(a,b)` is much faster then doing a for loop, and calculating the results element by element as [seen here](https://colab.research.google.com/github/Uzmamushtaque/CSCI_4170_6170_Spring2026/blob/main/Lecture_02.ipynb#scrollTo=stsKbQvqIhN-&line=2&uniqifier=1)
+
+- **SIMD Instructions** - parallelization instructions 
+
+## Vectorizing Logistic regression 
+- Recall cost function: $L(y,\hat{y}) = \frac{1}{n} \sum_{i=1}^{n} l^{i}(y^{(i)},\hat{y}^{(i)})$
+- Computing this requires calculating y_hat, meaning $a=(\textbf{w}^Tx + b)$ must be calculated for every element 
+  - instead of calculating for every loop, find the dot product of the feature vector and the transpose of the weight vector 
+    - bias term (if exists) can be added to each induvidual calculation via brodcasting 
+  - this results of an A vector of: $A=[a^{(1)},a^{(2)}...a^{(n)}]$
+
+### Logistic regression from scratch with vectorization 
+- `forward pass` - process of moving your input data through the model to generat yhat 
+- *vectorization* → *fast forward pass* → *fast gradients* → *gradient descent*.
+- Forward: `z = X @ w + b`, `a = sigmoid(z)`
+- Loss: binary cross-entropy
+- Gradients: `dw = (X.T @ (a - y)) / n`, `db = mean(a - y)`
+  - `dw` - derivative with respect to the weights
+    - X.T = transpose of the inputs 
+    - @ is matrix multiplication 
+  - `db` - derivative with respect to the biases 
+
+- Scaling the features are important to prevent this: 
+  - If "Age" ranges from 0–80 and "Fare" ranges from 0–500, the model might think "Fare" is 10x more important just because the numbers are bigger. After scaling with standard scalar, both features will generally fall between -3 and 3.
+- `lr - learning rate` - determines how big of a step the model takes in the direction of gradient descent after each update 
+- `steps` - how many updates occur
+- `eps` represents epsilon which is a tiny number that protects against log(0) errors
+- `w -= lr * dw` - vital as it updates every element of the weight vector by the specified amount 
+- `test_pred = (test_probs >= 0.5).astype(int)` - throws the probablilities to a certain side
+
+## Activation Functions
+- The 'filter' on your model that decides whether or not a signal is strong enough to be passed to the next part of the network. 
+  - in logistic regression, the sigmoid was the activation 
+- Allows non-linearity of the model 
+- Choosing an activation function is a vital part of NN design 
+- Typical picks: 
+  - `sign function` - In problems where binary class labels need to be predicted 
+    - -1->1
+  - `identify funciton` - where target variable to be predicted is real 
+    - real valued positive numbers
+  - `sigmoid` - when predicting probabilities of binary class. 
+    - 0->1
+
+### Comparison 
+- Important distinction points
+  - Range (bounded vs unbounded) 
+  - Saturation Regions (where gradients get tiny) 
+  - Smooth vs peicewise-linear
+- Going to compare sigmoid (sigmoid), tanh (sign ), and ReLu (identify)
+  - graphed lines represent their ranges
+
+## Current: at Building projects
+- remove orig papers from this repo (organization) 
 
 
 
 
-
-
-
-
-
-
-## What the [minimal preprocessing](https://colab.research.google.com/github/Uzmamushtaque/CSCI_4170_6170_Spring2026/blob/main/Lecture_02.ipynb#scrollTo=0aFfHGtZeyKb) should be 
-- this should be only for the first couple of homework, will evolve over time. 
 
 ## Vectorization 
 ### What Logistic Regression is and how we will implement this on HW 1
