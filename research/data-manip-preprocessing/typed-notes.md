@@ -200,10 +200,13 @@
 - `eps` represents epsilon which is a tiny number that protects against log(0) errors
 - `w -= lr * dw` - vital as it updates every element of the weight vector by the specified amount 
 - `test_pred = (test_probs >= 0.5).astype(int)` - throws the probablilities to a certain side
-
+- `dz = (a - y_train)` this calculates the difference of yhat - y for each row 
 ## Activation Functions
 - The 'filter' on your model that decides whether or not a signal is strong enough to be passed to the next part of the network. 
   - in logistic regression, the sigmoid was the activation 
+- there are multiple, right now we are only using sigmoid 
+- *Saturation* in a problem, can become an issue 
+  - WHen the gradient (slope) of a function becomes near-zero. Effectively killing the learning process for that neuron 
 - Allows non-linearity of the model 
 - Choosing an activation function is a vital part of NN design 
 - Typical picks: 
@@ -222,45 +225,28 @@
 - Going to compare sigmoid (sigmoid), tanh (sign ), and ReLu (identify)
   - graphed lines represent their ranges
 
-## Current: at Building projects
-- remove orig papers from this repo (organization) 
+## Main Life Cycle of a Data Science/ML Project
+- Problem Comprehension 
+- Data Retrieval
+- Data Wrangling 
+- Data Investigation 
+- Feature Engineering and selection 
+  - similar to data wrangling but incorporates specific algs for feature transformation and selection 
+- Model Construction 
+- Implementation 
+  - after model is constructed, you must deploy it efficiently and optimally 
+- Supervision
+  - watching and aquianting the model with new datasets
+
+## [Gradient Calculation using tensors](https://colab.research.google.com/github/Uzmamushtaque/CSCI_4170_6170_Spring2026/blob/main/Lecture_02.ipynb#scrollTo=k-PrXhpCZDL3&line=11&uniqifier=1)
+- `y.backwards()` fills the `x.grad` 'bucket'
+  - calling `x.grad` first will return nothing 
 
 
 
-
-
-## Vectorization 
-### What Logistic Regression is and how we will implement this on HW 1
-- Maximum Likelihood Estimate (MLE) for Logistic regression 
-  - Bernoli 
-- Negative Log Likeliehood (NLL) 
-- Obviously, the goal is to minimize the loss 
-- Understand why we are using Cross entropy error instead of mean squared error 
-  - cross entropy loss is both convex and differentiable which is good because that is what we want. 
-    - **convex** - any local min is a global minimum 
-- **Implement** - come up with optimal parameter model 
-  - aka the optimal weights 
-- See the graph, minimizing the loss function to find the weights 
-  - aka cost function 
-- **Gradient Descent** 
-  - 1) Initialize parameters (w_1, w_2)
-    - randomly generate them 
-    - note we are trying to move closer to the bottom
-  - 2) Compute A
-    - typically referred to as *forward pass* 
-  - 3) Then we compute the gradient of the loss with respect to the current weights
-    - see formulas on notes sheet 
-  - 4) Update Weights 
-  - We keep running this until we are in a certain range of loss (close enough to the global min) 
-  - we are also takling about the learning rate 
-    - multiplying the gradient of the lost by some positive value 
-      - once we have the direction to move the initial values, we need to define how *far* we move
-      - the variable that determines that is the learning rate (is called a hyperparameter) 
     
-## Activation Functions 
-- there are multiple, right now we are only using sigmoid 
-  - maps any real number to a value between zero and 1
-- *Saturation* in a problem, can become an issue 
+
+
 
 ## Talking about paper 1
 - Batch Gradient Descent
@@ -281,14 +267,8 @@
   - Adam - these are others
   - will revisit these for lab 1 
 
-## Misc 
-- review **one hot encoding** 
-  - helps to convert categorical data types to numerical data types 
-## To do 
 
-- What does the [rank](https://colab.research.google.com/github/Uzmamushtaque/CSCI_4170_6170_Spring2026/blob/main/Lecture_02.ipynb#scrollTo=7U2InS2KsjwD&line=1&uniqifier=1) here represent? 
-- Figure out what the [Broadcasting Mechanism](https://colab.research.google.com/github/Uzmamushtaque/CSCI_4170_6170_Spring2026/blob/main/Lecture_02.ipynb#scrollTo=eLW3ildFibT9) is 
-  - what the mis match is? 
+## To do 
 - Read the paper 1 for lecture 
   - don't get too bogged down in the features
     
