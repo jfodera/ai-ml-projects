@@ -34,6 +34,7 @@
 - I dropped POSITION_GROUP is that ok? 
 - create colab sheet for us creating a kaggle
 - update column documentation  
+
 ## Things learned
 - The [nba API](https://github.com/swar/nba_api?tab=readme-ov-file) we are using is a wrapper on the official API on NBA.com
   - In clicking around NBA.com, it seems the URL is simply a get request to their API, returning the HTML output 
@@ -48,6 +49,7 @@
 - keep the year on, for stratification and analyzation of results but DONT train on it, 
 
 - Goal row: each shot from each ear
+
 
 
 # Current 
