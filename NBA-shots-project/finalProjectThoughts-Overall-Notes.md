@@ -40,7 +40,7 @@ Final Group Project/Paper Guidelines:
   - April 20th 
   - April 27th 
 - Project proposal due 12th 
-
+ 
 ## Question
 - Can we have a list of the deliverables 
 - Ask about extra credit and if I can get help getting back from hw1
@@ -64,15 +64,31 @@ IndexError: list index out of range
 
 
 - the Related Work, Appendix, and Rerferences sections 
-  - Include the colab in there. 
+  -  
+  - Put the api pull in the appendix 
+
 - Skim over colab, and paper to look for any grammar issues
   - Ensure we fufill all requirements from rubric
-- Put it in paper format for extra credit 
-- Next Steps: 
-  - Make your own dataset with "closest defender" as an added column 
-  - We elected not to do this because the other dataset had poor structure and ultimatley it is a subjective column as defender clossness does not well convey how contested the shot was 
+- Put it in paper format for extra credit (all fonts and such align) 
+  - Try to use Troy web google pro AI for that
+  - Utilize my grok chat to make sure everything meerts conference readiness
+    - Datasets are correctly referenced in the writing 
+    - appendix section is correctly referenced in the writing 
+    - follows all standards
+  - Conference Readiness Extra Credit: For a conference ready paper, teams will receive extra credit.
+Teams that aim for extra credit must explicitly state their goal of producing a conference-quality
+paper and justify how their project meets this standard.
+- Ensure Matt says we worked with a total of 40 data sets
+- Add Harmans correct/wrong picker into the repo. 
 
 ## Presentation Requirements
 - 12 min pres 
 - Start presentation with please do course evals. 
+### THoughts
+- If we really wanted to see the temporal effects of the 3-pointer, we would have had to reduce the shots analyzed to threes
+- However, the models we produced still provide an important takeaway that even over a 20 year span, (a very long time in the context of basketball evolution) despite all of the advances in athlete recovery, athletic ability and improved shooting accuracy, the fundamental laws that dictate whether a physical basketball goes through a physical hoop remain unchanged.    
+
+
+## Grading notes: 
+- We followed conference standard by doing references like this: https://cs229.stanford.edu/proj2017/final-reports/5132133.pdf
 
